@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Academic Calendar 2025/2026</title>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+/* ===== GLOBAL STYLES ===== */
+body{margin:0;font-family:system-ui,Segoe UI;background:#f3f5f7;color:#222;transition:.3s}
+/* Dark Mode */
+.dark {
+  background-color: #0b1e1a; /* ChatGPT-like dark green/black */
+  color: #e0e0e0; /* light text for readability */
+}
+
+/* Buttons */
+.dark button {
+  background-color: #1f3b34; /* darker button background */
+  color: #ffffff; /* white text */
+  border: 1px solid #2f5a4f; /* subtle border */
+}
+
+/* Card styling in dark mode */
+.dark .card {
+  background-color: #122c26; /* slightly lighter than body */
+  color: #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Card header */
+.dark .card-header {
+  color: #e0e0e0;
+}
+
+/* Event text */
+.dark .event {
+  background-color: #1b3b30;
+  color: #e0e0e0;
+}
+
+/* Timeline dots */
+.dark .timeline-dot {
+  background-color: #1f4f3f;
+}
+.dark .timeline-dot.active {
+  background-color: #3fe0a0;
+}
+
+/* Calendar dark mode */
+.dark .calendar .day {
+  background-color: #122c26;
+  color: #e0e0e0;
+}
+.dark .calendar .today {
+  background-color: #3fe0a0;
+  color: #000;
+}
+.dark .calendar .event-day {
+  border: 2px solid #3fe0a0;
+}
+
+/* Search input */
+.dark .search input {
+  color: #e0e0e0;
+}
+.dark .search {
+  background-color: #1b3b30;
+}
+
+/* Actions buttons hover */
+.dark .actions button:hover {
+  background-color: #3fe0a0;
+  color: #000;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ===== HERO ===== */
+.hero{background:linear-gradient(135deg,#326347,#1f3e2b);color:white;padding:40px 20px;text-align:center}
+.hero h1{margin:0;font-size:22px}
+
+/* ===== CONTROLS ===== */
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px;background:white;box-shadow:0 3px 8px rgba(0,0,0,.08)}
+.search{flex:1;display:flex;align-items:center;background:#f1f3f4;border-radius:24px;padding:6px 12px}
+.search input{border:none;background:none;outline:none;flex:1;padding:6px}
+.actions{display:flex;gap:8px}
+.actions button{display:flex;align-items:center;gap:4px;background:#326347;color:white;padding:8px 12px;border-radius:20px}
+
+/* ===== TIMELINE ===== */
+.timeline{display:flex;overflow-x:auto;gap:16px;padding:12px;background:white;scroll-behavior:smooth}
+.timeline::-webkit-scrollbar{display:none}
+.timeline-dot{flex:none;width:12px;height:12px;background:#326347;border-radius:50%;position:relative;transition:.3s}
+.timeline-dot.active{background:#2ecc71;transform:scale(1.5)}
+.timeline-dot:hover::after{opacity:1}
+.timeline-dot::after{content:attr(data-tooltip);position:absolute;bottom:24px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:3px 6px;border-radius:4px;font-size:11px;white-space:nowrap;opacity:0;transition:.3s}
+
+/* ===== PROGRESS BAR ===== */
+.progress{height:5px;background:#ddd;margin:0}
+.progress-bar{height:5px;background:#2ecc71;width:0%;transition:width .4s}
+
+/* ===== CARDS ===== */
+.container{max-width:900px;margin:auto;padding:20px}
+.card{background:white;border-radius:14px;margin-bottom:16px;box-shadow:0 4px 12px rgba(0,0,0,.08);overflow:hidden;transition:.4s}
+.card-header{display:flex;justify-content:space-between;align-items:center;padding:16px;cursor:pointer}
+.card-title{font-weight:600}
+.card-desc{font-size:13px;color:#777}
+.card-content{display:none;padding:14px 18px 20px}
+.semester{font-weight:600;margin-top:12px;color:#326347}
+.event{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid #eee;transition:.3s}
+.event:last-child{border-bottom:none}
+.event .material-icons{color:#326347}
+.event-date{font-size:13px;color:#326347;font-weight:600}
+.badge{background:#ff5252;color:white;padding:2px 6px;font-size:10px;border-radius:6px;margin-left:6px}
+
+/* ===== CALENDAR ===== */
+.calendar{margin-top:30px}
+.calendar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.day{padding:10px;background:white;border-radius:6px;text-align:center;font-size:13px}
+.today{background:#2ecc71;color:white}
+.event-day{border:2px solid #326347}
+
+/* ===== MOBILE ===== */
+@media(max-width:700px){
+.controls{flex-direction:column;align-items:stretch}
+.actions{justify-content:center}
+.timeline{width:100%;overflow-x:auto}
+}
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<h1>Academic Calendar 2025 / 2026</h1>
+<p>Approved March 10, 2026</p>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls">
+<div class="search">
+<span class="material-icons">search</span>
+<input id="search" placeholder="Search events">
+</div>
+<div class="actions">
+<button onclick="toggleDark()"><span class="material-icons">dark_mode</span></button>
+<button onclick="downloadICS()"><span class="material-icons">calendar_today</span></button>
+<button onclick="downloadPDF()"><span class="material-icons">picture_as_pdf</span></button>
+</div>
+</div>
+
+<div class="progress">
+<div class="progress-bar" id="semesterBar"></div>
+</div>
+
+<!-- TIMELINE -->
+<div class="timeline" id="timeline"></div>
+
+<!-- EVENT CARDS -->
+<div class="container" id="cards"></div>
+
+<!-- BOTTOM CALENDAR -->
+<div class="container calendar">
+<div class="calendar-header">
+<button onclick="changeMonth(-1)"><span class="material-icons">chevron_left</span></button>
+<h3 id="monthLabel"></h3>
+<button onclick="changeMonth(1)"><span class="material-icons">chevron_right</span></button>
+</div>
+<div class="calendar-grid" id="calendarGrid"></div>
+</div>
+
+<script>
+
+/* ===================== EVENTS DATA ===================== */
+const events=[
+// UNDERGRAD FIRST
+{group:"Undergraduate",sem:"First Semester",title:"Registration",start:"2026-03-09",end:"2026-04-05",duration:"4 Weeks"},
+{group:"Undergraduate",sem:"First Semester",title:"Late Registration",start:"2026-04-06",end:"2026-04-19",duration:"2 Weeks"},
+{group:"Undergraduate",sem:"First Semester",title:"Add and Drop Registration",start:"2026-04-13",end:"2026-04-19",duration:"1 Week"},
+{group:"Undergraduate",sem:"First Semester",title:"Lectures",start:"2026-03-23",end:"2026-04-28",duration:"6 Weeks"},
+{group:"Undergraduate",sem:"First Semester",title:"Mid-Semester Break",start:"2026-04-29",end:"2026-05-03",duration:"5 Days"},
+{group:"Undergraduate",sem:"First Semester",title:"Lectures",start:"2026-05-04",end:"2026-06-20",duration:"7 Weeks"},
+{group:"Undergraduate",sem:"First Semester",title:"Semester Examination",start:"2026-06-22",end:"2026-07-11",duration:"3 Weeks"},
+{group:"Undergraduate",sem:"First Semester",title:"Semester Break",start:"2026-07-12",end:"2026-07-26",duration:"2 Weeks"},
+{group:"Undergraduate",sem:"First Semester",title:"Fresh Students Matriculation",start:"2026-04-23",end:"2026-04-23",duration:"1 Day"},
+
+// UNDERGRAD SECOND
+{group:"Undergraduate",sem:"Second Semester",title:"Registration",start:"2026-06-29",end:"2026-07-26",duration:"4 Weeks"},
+{group:"Undergraduate",sem:"Second Semester",title:"Late Registration",start:"2026-07-27",end:"2026-08-09",duration:"2 Weeks"},
+{group:"Undergraduate",sem:"Second Semester",title:"Add and Drop Registration",start:"2026-08-03",end:"2026-08-09",duration:"1 Week"},
+{group:"Undergraduate",sem:"Second Semester",title:"Lectures",start:"2026-07-27",end:"2026-09-16",duration:"7 Weeks"},
+{group:"Undergraduate",sem:"Second Semester",title:"Mid-Semester Break",start:"2026-09-09",end:"2026-09-13",duration:"5 Days"},
+{group:"Undergraduate",sem:"Second Semester",title:"Lectures",start:"2026-09-14",end:"2026-10-24",duration:"6 Weeks"},
+{group:"Undergraduate",sem:"Second Semester",title:"Semester Examination",start:"2026-10-26",end:"2026-11-14",duration:"3 Weeks"},
+{group:"Undergraduate",sem:"Second Semester",title:"Semester Break",start:"2026-11-15",end:"2027-01-11",duration:"8 Weeks"},
+{group:"Undergraduate",sem:"Second Semester",title:"SIWES & Teaching Practice",start:"2026-11-16",end:"2027-01-15",duration:"9 Weeks"},
+
+// POSTGRAD FIRST
+{group:"Postgraduate",sem:"First Semester",title:"Registration",start:"2026-04-13",end:"2026-05-10",duration:"4 Weeks"},
+{group:"Postgraduate",sem:"First Semester",title:"Extension / Re-admission Period",start:"2026-04-13",end:"2026-05-15",duration:"5 Weeks"},
+{group:"Postgraduate",sem:"First Semester",title:"Late Registration",start:"2026-05-11",end:"2026-05-24",duration:"2 Weeks"},
+{group:"Postgraduate",sem:"First Semester",title:"Add and Drop Registration",start:"2026-05-18",end:"2026-05-24",duration:"1 Week"},
+{group:"Postgraduate",sem:"First Semester",title:"Lectures",start:"2026-04-27",end:"2026-06-09",duration:"7 Weeks"},
+{group:"Postgraduate",sem:"First Semester",title:"Mid-Semester Break",start:"2026-06-10",end:"2026-06-14",duration:"5 Days"},
+{group:"Postgraduate",sem:"First Semester",title:"Lectures",start:"2026-06-15",end:"2026-07-25",duration:"6 Weeks"},
+{group:"Postgraduate",sem:"First Semester",title:"Semester Examination",start:"2026-07-27",end:"2026-08-15",duration:"3 Weeks"},
+{group:"Postgraduate",sem:"First Semester",title:"Semester Break",start:"2026-08-16",end:"2026-08-30",duration:"2 Weeks"},
+{group:"Postgraduate",sem:"First Semester",title:"Fresh Students Matriculation",start:"2026-06-25",end:"2026-06-25",duration:"1 Day"},
+
+// POSTGRAD SECOND
+{group:"Postgraduate",sem:"Second Semester",title:"Registration",start:"2026-08-10",end:"2026-09-06",duration:"4 Weeks"},
+{group:"Postgraduate",sem:"Second Semester",title:"Late Registration",start:"2026-09-07",end:"2026-09-20",duration:"2 Weeks"},
+{group:"Postgraduate",sem:"Second Semester",title:"Add and Drop Registration",start:"2026-09-14",end:"2026-09-20",duration:"1 Week"},
+{group:"Postgraduate",sem:"Second Semester",title:"Lectures",start:"2026-08-31",end:"2026-10-13",duration:"7 Weeks"},
+{group:"Postgraduate",sem:"Second Semester",title:"Mid-Semester Break",start:"2026-10-14",end:"2026-10-18",duration:"5 Days"},
+{group:"Postgraduate",sem:"Second Semester",title:"Lectures",start:"2026-10-19",end:"2026-11-28",duration:"6 Weeks"},
+{group:"Postgraduate",sem:"Second Semester",title:"Semester Examination",start:"2026-11-30",end:"2026-12-19",duration:"3 Weeks"},
+{group:"Postgraduate",sem:"Second Semester",title:"Semester Break",start:"2026-12-20",end:"2027-02-21",duration:"9 Weeks"},
+
+// MBBS FIRST
+{group:"MBBS",sem:"First Semester",title:"Registration",start:"2026-03-09",end:"2026-04-20",duration:"2 Weeks"},
+{group:"MBBS",sem:"First Semester",title:"College Orientation Programme (200L)",start:"2026-03-23",end:"2026-03-23",duration:"1 Day"},
+{group:"MBBS",sem:"First Semester",title:"Lectures for First Semester (200L & 300L)",start:"2026-03-23",end:"2026-09-18",duration:"24 Weeks"},
+{group:"MBBS",sem:"First Semester",title:"200 Level Revision",start:"2026-09-21",end:"2026-10-02",duration:"2 Weeks"},
+{group:"MBBS",sem:"First Semester",title:"Mid Sessional Break for 200L",start:"2026-09-21",end:"2026-09-27",duration:"1 Week"},
+{group:"MBBS",sem:"First Semester",title:"1st Professional MBBS Examination",start:"2026-10-05",end:"2026-10-23",duration:"3 Weeks"},
+{group:"MBBS",sem:"First Semester",title:"Revision for Re-sit Examination (1st Professional MBBS Exam)",start:"2026-10-26",end:"2026-12-04",duration:"6 Weeks"},
+{group:"MBBS",sem:"First Semester",title:"Re-sit Examination (1st Professional MBBS Exam)",start:"2026-12-07",end:"2026-12-23",duration:"3 Weeks"},
+{group:"MBBS",sem:"Second Semester",title:"Lectures for Second Semester (200L)",start:"2026-09-28",end:"2027-02-12",duration:"18 Weeks"},
+{group:"MBBS",sem:"Second Semester",title:"Revision (200L)",start:"2027-02-15",end:"2027-02-19",duration:"1 Week"},
+{group:"MBBS",sem:"Second Semester",title:"Promotional Examination",start:"2027-02-22",end:"2027-03-05",duration:"2 Weeks"},
+{group:"MBBS",sem:"Second Semester",title:"Promotional Examination Revision for Re-sit Students",start:"2027-03-08",end:"2027-03-26",duration:"3 Weeks"},
+{group:"MBBS",sem:"Second Semester",title:"Re-sit Examination (Promotional Exam)",start:"2027-03-29",end:"2027-04-09",duration:"2 Weeks"},
+]
+
+/* ========== BUILD CARDS ========== */
+const groups=[...new Set(events.map(e=>e.group))]
+const container=document.getElementById("cards")
+groups.forEach(g=>{
+  let card=document.createElement("div")
+  card.className="card"
+  let semesters=[...new Set(events.filter(e=>e.group===g).map(e=>e.sem))]
+  card.innerHTML=`
+  <div class="card-header">
+    <div>
+      <div class="card-title">${g}</div>
+      <div class="card-desc">Programme schedule</div>
+    </div>
+    <span class="material-icons">expand_more</span>
+  </div>
+  <div class="card-content">
+    ${semesters.map(s=>`
+    <div class="semester">${s}</div>
+    ${events.filter(e=>e.group===g && e.sem===s).map(e=>`
+    <div class="event">
+      <span class="material-icons">event</span>
+      <div>
+        <div class="event-date">${e.start} → ${e.end}</div>
+        <div>${e.title} <span class="badge">${e.duration}</span></div>
+      </div>
+    </div>
+    `).join("")}
+    `).join("")}
+  </div>
+  `
+  container.appendChild(card)
+})
+
+/* ACCORDION */
+document.querySelectorAll(".card-header").forEach(h=>{
+  h.onclick=()=>{
+    document.querySelectorAll(".card-content").forEach(c=>{if(c!==h.nextElementSibling)c.style.display="none"})
+    let content=h.nextElementSibling
+    content.style.display=content.style.display==="block"?"none":"block"
+  }
+})
+
+/* SEARCH */
+document.getElementById("search").onkeyup=e=>{
+  let q=e.target.value.toLowerCase()
+  document.querySelectorAll(".event").forEach(ev=>{
+    ev.style.display=ev.innerText.toLowerCase().includes(q)?"flex":"none"
+  })
+}
+
+/* SEMESTER PROGRESS */
+let start=new Date("2026-03-09")
+let end=new Date("2026-07-11")
+let percent=((new Date()-start)/(end-start))*100
+document.getElementById("semesterBar").style.width=Math.max(0,Math.min(100,percent))+"%"
+
+/* CALENDAR */
+let current=new Date()
+function renderCalendar(){
+let grid=document.getElementById("calendarGrid")
+grid.innerHTML=""
+let year=current.getFullYear()
+let month=current.getMonth()
+const monthNames=["January","February","March","April","May","June","July","August","September","October","November","December"]
+document.getElementById("monthLabel").innerText=`${monthNames[month]} ${year}`
+
+// First day of month
+let firstDay=new Date(year,month,1).getDay()
+// Number of days in month
+let daysInMonth=new Date(year,month+1,0).getDate()
+
+// Previous month filler
+for(let i=0;i<firstDay;i++){
+    let day=document.createElement("div")
+    day.className="day"
+    grid.appendChild(day)
+}
+
+// Days of current month
+for(let d=1; d<=daysInMonth; d++){
+    let day=document.createElement("div")
+    day.className="day"
+    day.innerText=d
+    let dateStr=`${year}-${(month+1).toString().padStart(2,"0")}-${d.toString().padStart(2,"0")}`
+    // Highlight today
+    if(current.getFullYear()===year && current.getMonth()===month && current.getDate()===d){
+        day.classList.add("today")
+    }
+    // Highlight event days
+    if(events.some(ev=>{
+        let start=new Date(ev.start)
+        let end=new Date(ev.end)
+        let check=new Date(dateStr)
+        return check>=start && check<=end
+    })){
+        day.classList.add("event-day")
+    }
+    grid.appendChild(day)
+}
+}
+
+// Navigate months
+function changeMonth(dir){
+    current.setMonth(current.getMonth()+dir)
+    renderCalendar()
+}
+
+renderCalendar()
+
+/* DARK MODE TOGGLE */
+function toggleDark(){
+    document.body.classList.toggle("dark")
+}
+
+/* DOWNLOAD PLACEHOLDER FUNCTIONS */
+function downloadICS() {
+  let icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//YourApp//Academic Calendar 2025/2026//EN
+CALSCALE:GREGORIAN
+`;
+
+  events.forEach(ev => {
+    icsContent += `
+BEGIN:VEVENT
+SUMMARY:${ev.title} (${ev.group})
+DTSTART:${ev.start.replace(/-/g,'')}T000000
+DTEND:${ev.end.replace(/-/g,'')}T235959
+DESCRIPTION:${ev.title} - ${ev.duration}
+END:VEVENT
+`;
+  });
+
+  icsContent += 'END:VCALENDAR';
+
+  // Create a Blob and download
+  const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Academic_Calendar_2025_2026.ics';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+function downloadPDF() {
+  const element = document.querySelector('#cards'); // The container with all cards
+  html2pdf()
+    .set({
+      margin: 10,
+      filename: 'Academic_Calendar_2025_2026.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    })
+    .from(element)
+    .save();
+}
+/* TIMELINE */
+const timeline=document.getElementById("timeline")
+events.forEach(ev=>{
+    let dot=document.createElement("div")
+    dot.className="timeline-dot"
+    dot.setAttribute("data-tooltip",`${ev.group} - ${ev.title}`)
+    // Auto highlight current event
+    let today=new Date()
+    let start=new Date(ev.start)
+    let end=new Date(ev.end)
+    if(today>=start && today<=end) dot.classList.add("active")
+    dot.onclick=()=>document.querySelectorAll(".card-content").forEach(c=>{
+        c.style.display="none"
+        document.querySelectorAll(".card-header").forEach(h=>{
+            if(h.nextElementSibling===c)h.nextElementSibling.style.display="block"
+        })
+    })
+    timeline.appendChild(dot)
+})
+
+// Auto-scroll timeline to active
+setTimeout(()=>{
+    let active=document.querySelector(".timeline-dot.active")
+    if(active) active.scrollIntoView({behavior:"smooth",inline:"center"})
+},300)
+
+</script>
+</body>
+</html>
