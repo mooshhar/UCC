@@ -1,0 +1,194 @@
+<!-- header.html -->
+<header>
+<!-- Google Fonts & Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<style>
+/* Reset & Global */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Roboto', sans-serif; }
+
+/* Navbar */
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(135deg, #10E060, #0C6434);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Logo */
+.navbar .logo {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+}
+.navbar .logo img { height: 40px; }
+
+/* Desktop Nav Buttons */
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+.navbar ul li {
+  flex: 1; /* make all buttons same width */
+}
+.navbar ul li a {
+  display: block;
+  text-align: center;
+  padding: 10px 15px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.15);
+  font-weight: 500;
+  color: #fff;
+  transition: 0.3s;
+}
+.navbar ul li a:hover { background: rgba(255,255,255,0.3); }
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  font-size: 32px;
+  cursor: pointer;
+  color: #fff;
+}
+
+/* Dropdown Contact Button */
+.dropdown { position: relative; display: inline-block; }
+.dropdown-btn {
+  background: #fff;
+  color: #10E060;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.dropdown-btn:hover { background: #e8f5e9; }
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  min-width: 180px;
+  z-index: 10;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+.dropdown-content.show {
+  display: block;
+  opacity: 1;
+}
+.dropdown-content a {
+  color: #10E060;
+  padding: 10px 15px;
+  display: block;
+  border-bottom: 1px solid #f0f0f0;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+.dropdown-content a:last-child { border-bottom: none; }
+.dropdown-content a:hover { background: #e8f5e9; }
+
+/* Side Navigation Mobile */
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1500;
+  top: 0;
+  left: 0;
+  background: linear-gradient(135deg, #10E060, #0C6434);
+  overflow-x: hidden;
+  transition: width 0.3s ease;
+  padding-top: 60px;
+}
+.sidenav a {
+  padding: 12px 30px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: #fff;
+  display: block;
+  transition: all 0.3s ease;
+}
+.sidenav a:hover { background: rgba(255,255,255,0.1); border-radius: 0 20px 20px 0; }
+.sidenav .closebtn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media(max-width:768px){
+  .navbar ul { display: none; }
+  .hamburger { display: block; }
+  .navbar .logo { font-size: 1.2rem; } /* smaller on mobile */
+}
+</style>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">
+        <img src="https://via.placeholder.com/40x40.png?text=UCC" alt="UCC Logo">
+        UMYUK Campus Connect
+    </div>
+    <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#tools">Tools</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+    <span class="material-icons hamburger" onclick="openNav()">menu</span>
+    <div class="dropdown">
+        <div class="dropdown-btn"><i class="material-icons">whatsapp</i> Contact Us</div>
+        <div class="dropdown-content">
+            <a href="https://wa.me/2348144568707" target="_blank">President & Founder</a>
+            <a href="https://wa.me/2349126171030" target="_blank">Secretary General</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Side Navigation (Mobile) -->
+<div id="mySidenav" class="sidenav">
+    <span class="material-icons closebtn" onclick="closeNav()">close</span>
+    <a href="#hero" onclick="closeNav()">Home</a>
+    <a href="#features" onclick="closeNav()">Features</a>
+    <a href="#tools" onclick="closeNav()">Tools</a>
+    <a href="#contact" onclick="closeNav()">Contact</a>
+</div>
+
+<script>
+// Dropdown Hero Contact
+document.querySelector('.dropdown-btn').addEventListener('click', function() {
+    document.querySelector('.dropdown-content').classList.toggle('show');
+});
+window.onclick = function(e) {
+  if (!e.target.matches('.dropdown-btn')) {
+    document.querySelector('.dropdown-content').classList.remove('show');
+  }
+}
+
+// Side Nav
+function openNav() { document.getElementById("mySidenav").style.width = "250px"; }
+function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
+</script>
+</header>
