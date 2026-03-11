@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UMYUK Campus Connect</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+/* Reset & Global */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Roboto', sans-serif; background: #f9f9f9; color: #333; line-height: 1.6; scroll-behavior: smooth; }
+a { text-decoration: none; color: inherit; }
+
+/* Container */
+.container { width: 90%; max-width: 1200px; margin: auto; }
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #4caf50, #81c784);
+    color: #fff;
+    text-align: center;
+    padding: 80px 20px 40px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+.hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+.hero p { font-size: 1.2rem; margin-bottom: 20px; }
+
+/* Contact Buttons */
+.contact-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px;
+    padding: 10px 20px;
+    background: #fff;
+    color: #4caf50;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+.contact-links a:hover { background: #e8f5e9; }
+
+/* Features Section */
+.features { display: flex; flex-wrap: wrap; justify-content: space-around; margin: 40px 0; }
+.feature-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    width: 280px;
+    margin: 10px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+.feature-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+.feature-card i.material-icons { font-size: 48px; color: #4caf50; margin-bottom: 10px; }
+.feature-card h3 { margin-bottom: 10px; }
+.feature-card p { font-size: 0.95rem; }
+
+/* Tools Section */
+.tools { display: flex; flex-wrap: wrap; justify-content: space-around; margin: 40px 0; }
+.tool-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    width: 280px;
+    margin: 10px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.tool-card h3 { margin-bottom: 10px; }
+.tool-card p { font-size: 0.95rem; margin-bottom: 10px; }
+.tool-card a { color: #4caf50; font-weight: bold; }
+
+/* Social Proof */
+.social-proof { background: #e8f5e9; padding: 40px 20px; text-align: center; }
+.social-proof h2 { margin-bottom: 20px; }
+.testimonial { font-style: italic; margin: 15px 0; }
+
+/* Contact Section */
+.contact { padding: 40px 20px; text-align: center; }
+.contact h2 { margin-bottom: 20px; }
+.contact a { display: inline-flex; align-items: center; gap: 10px; margin: 10px; padding: 10px 15px; background: #4caf50; color: #fff; border-radius: 20px; transition: 0.3s; }
+.contact a:hover { background: #388e3c; }
+
+/* Footer */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 40px;
+}
+footer a { color: #81c784; margin: 0 5px; }
+
+/* Responsive */
+@media(max-width:768px){
+    .features, .tools { flex-direction: column; align-items: center; }
+    .hero h1 { font-size: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header will be loaded here -->
+<div id="header-placeholder"></div>
+
+<div class="container">
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <h1>Welcome to UMYUK CAMPUS CONNECT</h1>
+        <p>The number one source of reliable and timely information for the UMYUK community. Built on trust and accuracy ✅.</p>
+        <div class="contact-links">
+            <a href="https://wa.me/2348144568707" target="_blank"><i class="material-icons">whatsapp</i> President</a>
+            <a href="https://wa.me/2349126171030" target="_blank"><i class="material-icons">whatsapp</i> Secretary General</a>
+        </div>
+        <p style="margin-top:15px;">
+            <a href="https://whatsapp.com/channel/0029VanXdBZJENy6C6Elii2S" style="color:#fff; font-weight:bold; display:inline-block; margin-top:10px;" target="_blank">Join Main WhatsApp Channel</a>
+        </p>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="feature-card">
+            <i class="material-icons">school</i>
+            <h3>Verified Updates</h3>
+            <p>Get reliable campus updates 🏫 and announcements 📣 that students can truly rely on.</p>
+        </div>
+        <div class="feature-card">
+            <i class="material-icons">book</i>
+            <h3>Academic Info</h3>
+            <p>Access academic information 📚 including courses, deadlines, and results instantly.</p>
+        </div>
+        <div class="feature-card">
+            <i class="material-icons">public</i>
+            <h3>Opportunities</h3>
+            <p>Stay informed about events, competitions, and opportunities 🌍 within the community.</p>
+        </div>
+        <div class="feature-card">
+            <i class="material-icons">verified</i>
+            <h3>Trusted Source</h3>
+            <p>In a world of noise, UCC remains a trusted voice 🤝 keeping students informed and connected.</p>
+        </div>
+    </section>
+
+    <!-- Tools / Courses Section -->
+    <section class="tools" id="tools">
+        <div class="tool-card">
+            <h3>UCC Website</h3>
+            <p>Explore all campus updates and articles on our official site.</p>
+            <a href="https://sites.google.com/view/umyukcampusconnect/home" target="_blank">Visit Site</a>
+        </div>
+        <div class="tool-card">
+            <h3>UCC Blog</h3>
+            <p>Read latest posts, student stories, and important tips.</p>
+            <a href="https://sites.google.com/view/umyukcampusconnect/blog" target="_blank">Read Blog</a>
+        </div>
+        <div class="tool-card">
+            <h3>GPA / CGPA Calculator</h3>
+            <p>Quickly calculate your GPA or CGPA and track your academic progress.</p>
+            <a href="https://sites.google.com/view/umyukcampusconnect/gpacgpa-cal" target="_blank">Calculate Now</a>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof">
+        <h2>What Students Say</h2>
+        <p class="testimonial">"UCC keeps me updated with everything happening on campus. A must-have app for every UMYUK student!"</p>
+        <p class="testimonial">"The GPA calculator saved me so much time, and I always get accurate results!"</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Contact Us</h2>
+        <a href="https://wa.me/2348144568707"><i class="material-icons">whatsapp</i> President & Founder</a>
+        <a href="https://wa.me/2349126171030"><i class="material-icons">whatsapp</i> Secretary General</a>
+        <a href="https://wa.me/2349068509140"><i class="material-icons">whatsapp</i> Additional Contact</a>
+        <p>Follow us:</p>
+        <a href="https://www.facebook.com/profile.php?id=61574932722579" target="_blank"><i class="material-icons">facebook</i> Facebook Page</a>
+        <a href="https://facebook.com/groups/1213652747175837/" target="_blank"><i class="material-icons">groups</i> Facebook Group</a>
+        <p style="margin-top:15px;">
+            <a href="https://whatsapp.com/channel/0029VanXdBZJENy6C6Elii2S" target="_blank" style="background:#25D366; color:#fff; padding:10px 15px; border-radius:20px; display:inline-block;">Join Main WhatsApp Channel</a>
+        </p>
+    </section>
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>UMYUK Campus Connect © 2026 | For Adverts: <a href="mailto:uccinfom@gmail.com">uccinfom@gmail.com</a></p>
+</footer>
+
+<script>
+// Load header.html dynamically after DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+          document.getElementById('header-placeholder').innerHTML = data;
+      })
+      .catch(err => console.error('Error loading header:', err));
+});
+</script>
+
+</body>
+</html>
